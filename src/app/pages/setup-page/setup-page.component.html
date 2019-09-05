@@ -1,0 +1,197 @@
+<body>
+    <div class="row no-margin no-padding">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+
+            <!-- Personal Information Entry -->
+            <div style="margin-bottom: 32px;">
+                <h1>Personal Information</h1>
+                <div class="row no-margin no-padding">
+                    <input placeholder="First Name" [(ngModel)]="firstName" class="input-margin-right margin-bottom">
+                    <input placeholder="Last Name" [(ngModel)]="lastName" class="input-margin-left margin-bottom">
+                </div>
+                <hr>
+            </div>
+
+            <!-- Summary Entry -->
+            <div class="entry-section">
+                <div class="row no-margin no-padding between-xs align-items-center">
+                    <h1>Summary</h1>
+                </div>
+                <div class="row no-margin no-padding">
+                    <textarea class="margin-bottom" placeholder="Write a little bit about yourself. What makes you the best candidate? What are your strengths? What are your weaknesses?" [(ngModel)]="summary"></textarea>
+                </div>
+                <hr>
+            </div>
+
+            <!-- Skills Entry -->
+            <div class="entry-section">
+                <div class="row no-margin no-padding between-xs align-items-center">
+                    <h1>Skills</h1>
+                    <button class="ripple" (click)="addSkill()">Add New</button>
+                </div>
+                <div *ngFor="let skill of skills">
+                    <div class="row no-margin no-padding">
+                        <button class="ripple remove" (click)="removeSkill(skill)" title="Remove Entry">&#10005;</button>
+                        <input class="margin-bottom" placeholder="What skill do you have?" [(ngModel)]="skill.info">
+                    </div>
+                    <hr>
+                </div>
+
+                <div *ngIf="skills.length < 1">
+                    <p class="background-text">No skill entries. Press "Add New" to create one.</p>
+                    <hr>
+                </div>
+            </div>
+
+            <!-- Contact Information Entry -->
+            <div class="entry-section">
+                <div class="row no-margin no-padding between-xs align-items-center">
+                    <h1>Contact Info</h1>
+                    <button class="ripple" (click)="addContact()">Add New</button>
+                </div>
+
+                <div *ngFor="let cont of contact">
+                    <div class="row no-margin no-padding">
+                        <button class="ripple remove" (click)="removeContact(cont)" title="Remove Entry">&#10005;</button>
+                        <select selected="Phone" [(ngModel)]="cont.type" class="input-margin-right margin-bottom">
+                            <option value="Phone">Phone</option>
+                            <option value="Email">Email</option>
+                            <option value="Address">Address</option>
+                            <option value="Website">Website</option>
+                        </select>
+                        <input placeholder="Info" [(ngModel)]="cont.info" class="input-margin-left margin-bottom">
+                    </div>
+                    <hr>
+                </div>
+
+                <div *ngIf="contact.length < 1">
+                    <p class="background-text">No contact entries. Press "Add New" to create one.</p>
+                    <hr>
+                </div>
+            </div>
+
+            <!-- Education Entry -->
+            <div class="entry-section">
+                <div class="row no-margin no-padding between-xs align-items-center">
+                    <h1>Education</h1>
+                    <button class="ripple" (click)="addEducation()">Add New</button>
+                </div>
+
+                <div *ngFor="let edu of education">
+                    <div class="row no-margin no-padding">
+                        <button class="ripple remove" (click)="removeEducation(edu)" title="Remove Entry">&#10005;</button>
+                        <input placeholder="School" [(ngModel)]="edu.school" class="input-margin-right margin-bottom">
+                        <input placeholder="Degree / Diploma / Certificate" [(ngModel)]="edu.degree" class="input-margin-left margin-bottom">
+                    </div>
+                    <div class="row no-margin no-padding">
+                        <input placeholder="Date Started" [(ngModel)]="edu.dateStarted" class="input-margin-right margin-bottom">
+                        <input placeholder="Date Ended (or current)" [(ngModel)]="edu.dateEnded" class="input-margin-left margin-bottom">
+                    </div>
+                    <hr>
+                </div>
+                
+                <div *ngIf="education.length < 1">
+                    <p class="background-text">No education entries. Press "Add New" to create one.</p>
+                    <hr>
+                </div>
+            </div>
+
+            <!-- Work Experience Entry -->
+            <div class="entry-section">
+                <div class="row no-margin no-padding between-xs align-items-center">
+                    <h1>Work Experience</h1>
+                    <button class="ripple" (click)="addExperience()">Add New</button>
+                </div>
+
+                <div *ngFor="let exp of workExperience">
+                    <button class="ripple remove" (click)="removeExperience(exp)" title="Remove Entry">&#10005;</button>
+                    <div class="row no-margin no-padding">
+                        <input placeholder="Company Name" [(ngModel)]="exp.company" class="input-margin-right margin-bottom">
+                        <input placeholder="Position" [(ngModel)]="exp.position" class="input-margin-left margin-bottom">
+                    </div>
+                    <div class="row no-margin no-padding">
+                        <input placeholder="Date Started" [(ngModel)]="exp.dateStarted" class="input-margin-right margin-bottom">
+                        <input placeholder="Date Ended (or current)" [(ngModel)]="exp.dateEnded" class="input-margin-left margin-bottom">
+                    </div>
+        
+                    <div class="row no-margin no-padding">
+                        <textarea placeholder="Write a little about your responsibilites, tasks, and experiences at this position." [(ngModel)]="exp.about"></textarea>
+                    </div>
+
+                    <hr>
+                </div>
+
+                
+                <div *ngIf="workExperience.length < 1">
+                    <p class="background-text">No work experience entries. Press "Add New" to create one.</p>
+                    <hr>
+                </div>
+            </div>
+
+            <!-- Projects Entry -->
+            <div class="entry-section">
+                <div class="row no-margin no-padding between-xs align-items-center">
+                    <h1>Projects</h1>
+                    <button class="ripple" (click)="addProject()">Add New</button>
+                </div>
+                <div *ngFor="let project of projects">
+                    <button class="ripple remove" (click)="removeProject(project)" title="Remove Entry">&#10005;</button>
+                    <div class="row no-margin no-padding">
+                        <input placeholder="Project Name" [(ngModel)]="project.name" class="input-margin-right margin-bottom">
+                        <input placeholder="URL" [(ngModel)]="project.url" class="input-margin-left margin-bottom">
+                    </div>
+
+                    <div class="row no-margin no-padding">
+                        <textarea placeholder="Write a little about your project. What is it? Who does it benefit? What challenges did you encounter?" [(ngModel)]="project.about"></textarea>
+                    </div>
+                    <hr>
+                </div>
+
+                
+                <div *ngIf="projects.length < 1">
+                    <p class="background-text">No project entries. Press "Add New" to create one.</p>
+                    <hr>
+                </div>
+            </div>
+
+            <!-- References Entry -->
+            <div class="entry-section">
+                <div class="row no-margin no-padding between-xs align-items-center">
+                    <h1>References</h1>
+                    <button class="ripple" (click)="addReference()">Add New</button>
+                </div>
+
+                <div *ngFor="let ref of references">
+                    <button class="ripple remove" (click)="removeReference(ref)" title="Remove Entry">&#10005;</button>
+                    <div class="row no-margin no-padding">
+                        <input placeholder="First Name" [(ngModel)]="ref.firstName" class="input-margin-right margin-bottom">
+                        <input placeholder="Last Name" [(ngModel)]="ref.lastName" class="input-margin-left margin-bottom">
+                    </div>
+                    <div class="row no-margin no-padding">
+                        <input placeholder="Company (optional)" [(ngModel)]="ref.company" class="input-margin-right margin-bottom">
+                        <input placeholder="Position (optional)" [(ngModel)]="ref.position" class="input-margin-left margin-bottom">
+                    </div>
+                    <div class="row no-margin no-padding">
+                        <input placeholder="Phone" [(ngModel)]="ref.phone" class="input-margin-right margin-bottom">
+                        <input placeholder="Email" [(ngModel)]="ref.email" class="input-margin-left margin-bottom">
+                    </div>
+        
+                    <div class="row no-margin no-padding">
+                        <textarea placeholder="What is your relation to this person?" [(ngModel)]="ref.about"></textarea>
+                    </div>
+                    <hr>
+                </div>
+
+                
+                <div *ngIf="references.length < 1">
+                    <p class="background-text">No reference entries. Press "Add New" to create one.</p>
+                    <hr>
+                </div>
+            </div>
+
+            <div class="row no-margin no-padding">
+                <button class="ripple" (click)="confirmClicked()">Confirm</button>
+            </div>
+        </div>
+    </div>
+</body>
