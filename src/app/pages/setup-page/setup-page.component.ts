@@ -18,30 +18,21 @@ import { Utilities } from 'src/app/utils/utilities';
 })
 export class SetupPageComponent implements OnInit {
 
-  firstName: string = "Carter";
+  firstName: string = "";
   lastName: string = "";
   summary: string = "";
 
-  contact: Contact[] = [
-  ];
+  contact: Contact[] = [];
 
-  skills: Skill[] = [
-  ];
+  skills: Skill[] = [];
 
-  education: Education[] = [
-  ];
+  education: Education[] = [];
 
-  workExperience: WorkExperience[] = [
+  workExperience: WorkExperience[] = [];
 
-  ];
+  projects: Project[] = [];
 
-  projects: Project[] = [
-
-  ];
-
-  references: Reference[] = [
-
-  ];
+  references: Reference[] = [];
 
   constructor() {
   }
